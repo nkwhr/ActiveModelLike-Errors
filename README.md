@@ -11,7 +11,7 @@ ActiveModelLike::Errors - A Perl port of ActiveModel::Errors
     $errros->add('age', 'is invalid');
     $errros->add('name', 'can not be empty');
 
-    $errors->is_empty;      # false
+    $errors->is_empty;      # 0
     $errors->messages;      # { age => ['is invalid'], name => ['can not be empty'] }
     $errors->full_messages; # ['Age is invalid', 'Name can not be empty']
 
@@ -25,9 +25,9 @@ Due to lack of other related modules (e.g. ActiveModel::Validations, ActiveModel
 
 ## add
 
-Adds error message for the key and returns its error messages.
-More than one message can be set on the same key.
-If no message is supplied, 'is invalid' will be set by default.
+Adds error message for the attribute and returns its error messages.
+More than one message can be set on the same attribute.
+If no message is supplied, "is invalid" will be set by default.
 
     $errors->add('name');                     # ['is invalid']
     $errors->add('name', 'can not be empty'); # ['is invalid', 'can not be empty']
@@ -40,7 +40,7 @@ Message also can be a subroutine reference.
     });
 
 If the strict option is enabled, it will die and croak an error instead of adding them.
-strict option can alse be a custom message.
+An option can also be a custom message.
 
     $errors->add('name', 'is invalid', { strict => 1 });
     # Dies with a message "Strict validation failed: Name is invalid"
@@ -48,7 +48,7 @@ strict option can alse be a custom message.
     $errors->add('name', 'is invalid', { strict => 'Custom Exception' });
     # Dies with a message "Custom Exception: Name is invalid"
 
-If the error is not associated with a specific key, it should be set to 'base'.
+If the error is not associated with a specific attribute, it should be set to "base".
 
     $errors->add('base', 'something went wrong');
     $errors->messages; # { base => ['something went wrong'] }
@@ -67,7 +67,7 @@ Alias for ["size"](#size).
 
 ## delete
 
-Delete messages for the key. Returns the deleted messages.
+Delete messages for the attribute. Returns the deleted messages.
 
     $errors->get('name');    # ['']
     $errors->delete('name'); # ['is invalid']
@@ -75,19 +75,19 @@ Delete messages for the key. Returns the deleted messages.
 
 ## each
 
-Iterates through each error key/value pair in the error messages hash.
+Iterates through each attribute/message pair in the error messages hash.
 
     $errors->add('name', 'can not be empty');
     $errors->add('name', 'is invalid');
 
     $errors->each(sub {
-        my ($key, $message) = @_;
+        my ($attribute, $message) = @_;
         # do_something
     });
 
 ## full\_message
 
-Returns a full message for a given key.
+Returns a full message for a given attribute.
 
     $errors->full_message('name', 'is invalid'); # 'Name is invalid'
 
@@ -102,7 +102,7 @@ Returns all the full error messages in an array.
 
 ## full\_messages\_for
 
-Returns all the full error messages for a given key.
+Returns all the full error messages for a given attribute.
 
     $errors->add('name', 'is invalid');
     $errors->add('name', 'can not be empty');
@@ -111,7 +111,7 @@ Returns all the full error messages for a given key.
 
 ## get
 
-Get messages for the given key.
+Get messages for the given attribute.
 
     $errors->messages;    # { name => ['is invalid'] }
     $errors->get('name'); # ['is invalid']
@@ -123,7 +123,8 @@ Alias for ["include"](#include).
 
 ## include
 
-Returns 1 if the error messages include an error for the given key. Otherwise returns 0.
+Returns "1" if the error messages include an error for the given attribute.
+Otherwise returns "0".
 
     $errors->messages;        # { name => ['is invalid'] }
     $errors->include('name'); # 1
@@ -131,7 +132,8 @@ Returns 1 if the error messages include an error for the given key. Otherwise re
 
 ## is\_added
 
-Returns 1 if an error on the key with the given message is present. Otherwise returns 0.
+Returns "1" if an error on the attribute with the given message is present.
+Otherwise returns "0".
 
     $errors->add('name', 'is invalid');
     $errors->is_added('name', 'is invalid');       # 1
@@ -143,7 +145,7 @@ Alias for ["is\_empty"](#is_empty).
 
 ## is\_empty
 
-Returns 1 if no errors are found. Otherwise returns 0.
+Returns "1" if no errors are found. Otherwise returns "0".
 
     $errors->messages; # { name => 'can not be empty' }
     $errors->is_empty; # 0
@@ -156,7 +158,7 @@ Alias for ["include"](#include).
 
 ## keys
 
-Returns all message keys.
+Returns all message attributes.
 
     $errors->messages; # { age => ['is invalid'], name => ['can not be empty', 'must be specified'] }
     $errors->keys;     # ['age', 'name']
@@ -170,10 +172,10 @@ Returns a hash of error messages.
 
 ## set
 
-Set messages for the given key.
+Set messages for the given attribute. Messages must be an array referece.
 
     $errors->get('name'); # undef
-    $errors->set('name', 'can not be empty');
+    $errors->set('name', ['can not be empty']);
     $errors->get('name'); # ['can not be empty']
 
 ## size

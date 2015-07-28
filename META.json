@@ -52,5 +52,16 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/nkwhr/ActiveModelLike-Errors/issues"
+      },
+      "homepage" : "https://github.com/nkwhr/ActiveModelLike-Errors",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/nkwhr/ActiveModelLike-Errors.git",
+         "web" : "https://github.com/nkwhr/ActiveModelLike-Errors"
+      }
+   },
    "version" : "0.01"
 }
