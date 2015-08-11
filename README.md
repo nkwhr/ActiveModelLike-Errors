@@ -152,10 +152,6 @@ Returns "1" if no errors are found. Otherwise returns "0".
     $errors->clear;
     $errors->is_empty: # 1
 
-## key
-
-Alias for ["include"](#include).
-
 ## keys
 
 Returns all message attributes.

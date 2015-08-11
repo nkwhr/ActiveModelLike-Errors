@@ -36,11 +36,6 @@ subtest '#has_key' => sub {
     is $errors->has_key('name'), $errors->include('name');
 };
 
-subtest '#key' => sub {
-    my $errors = new_ok 'ActiveModelLike::Errors';
-    is $errors->key('name'), $errors->include('name');
-};
-
 subtest '#get' => sub {
     my $errors = new_ok 'ActiveModelLike::Errors';
     $errors->{messages} = { name => ['can not be empty'] };

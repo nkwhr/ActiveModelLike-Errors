@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     my ($class) = @_;
@@ -21,8 +21,6 @@ sub include {
 }
 
 sub has_key { $_[0]->include($_[1]); }
-
-sub key { $_[0]->include($_[1]); }
 
 sub get {
     my ($self, $key) = @_;
@@ -315,10 +313,6 @@ Returns "1" if no errors are found. Otherwise returns "0".
     $errors->is_empty; # 0
     $errors->clear;
     $errors->is_empty: # 1
-
-=head2 key
-
-Alias for L<"include">.
 
 =head2 keys
 
