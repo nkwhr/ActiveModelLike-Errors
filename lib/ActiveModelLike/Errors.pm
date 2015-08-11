@@ -17,7 +17,7 @@ sub clear { $_[0]->{messages} = {}; }
 
 sub include {
     my ($self, $attribute) = @_;
-    $self->{messages}->{$attribute} ? 1 : 0;
+    $self->messages->{$attribute} ? 1 : 0;
 }
 
 sub has_key { $_[0]->include($_[1]); }
@@ -29,12 +29,12 @@ sub get {
 
 sub set {
     my ($self, $key, $value) = @_;
-    $self->{messages}->{$key} = $value;
+    $self->messages->{$key} = $value;
 }
 
 sub delete {
     my ($self, $key) = @_;
-    CORE::delete $self->{messages}->{$key};
+    CORE::delete $self->messages->{$key};
 }
 
 sub each {
