@@ -233,7 +233,7 @@ Alias for L<"size">.
 
 Delete messages for the attribute. Returns the deleted messages.
 
-    $errors->get('name');    # ['']
+    $errors->get('name');    # ['is invalid']
     $errors->delete('name'); # ['is invalid']
     $errors->get('name');    # undef
 
